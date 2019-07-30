@@ -1,0 +1,67 @@
+slotsNode
+ root
+ description A Tree Language for scheduling meetings
+ inScope slotNode
+ catchAllNodeType errorNode
+slotNode
+ firstCellType keywordCell
+ inScope abstractPropertyNode bookedByNode
+personInitialsCell
+ highlightScope string
+bookedByNode
+ description Add your initials to book a slot.
+ catchAllCellType personInitialsCell
+ firstCellType propertyKeywordCell
+ single
+abstractPropertyNode
+ firstCellType propertyKeywordCell
+ todo Put required here. Current bug prevents that with abstract.
+timeNode
+ extends abstractPropertyNode
+ cells timeCell
+timeCell
+ extends intCell
+ description An hour time in the format 0-23.
+ todo Add a min/max to Cell/Types
+ enum 12 13 14 15 16 17 18
+durationCell
+ enum 15 30
+ extends intCell
+durationNode
+ extends abstractPropertyNode
+ description Meeting duration in minutes
+ cells durationCell
+ required
+dayNode
+ description
+ required
+ extends abstractPropertyNode
+ cells dayNameCell monthNameCell dayNumberCell yearCell
+intCell
+ highlightScope constant.numeric.integer
+dayNameCell
+ enum Sunday Monday Tuesday Wednesday Thursday Friday Saturday
+ highlightScope constant.numeric.integer
+dayNumberCell
+ extends intCell
+ todo Add a min/max to Cell/Types
+ enum 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+yearCell
+ enum 2019 2020
+ extends intCell
+monthNameCell
+ enum January February March April May June July August September October November December
+ highlightScope constant.numeric.integer
+timeZoneCell
+ enum HawaiiStandardTime
+ highlightScope string
+timeZoneNode
+ required
+ cells timeZoneCell
+ extends abstractPropertyNode
+propertyKeywordCell
+ highlightScope variable
+keywordCell
+ highlightScope keyword
+errorNode
+ baseNodeType errorNode
